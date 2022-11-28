@@ -1,3 +1,6 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) throws InvalidInformationException {
 
@@ -13,8 +16,11 @@ public class Main {
         //- Фигуранын коломун эсептеген формула: (length*width*height);
         //-Формулалар Parallelepiped классында жазылуусу керек
 
-            Parallelepiped parallelepiped = new Parallelepiped(10, 12, 15);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Write the height, length and width of Figure: ");
+
             try {
+                Parallelepiped parallelepiped = new Parallelepiped(scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
                 parallelepiped.check();
                 parallelepiped.figureArea();
                 parallelepiped.figureVolume();
@@ -22,6 +28,9 @@ public class Main {
             } catch (InvalidInformationException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Please write correctly!");
+            } catch (InputMismatchException e){
+                System.out.println(e.getMessage());
+                System.out.println("Please write a number!");
             }
     }
 }
